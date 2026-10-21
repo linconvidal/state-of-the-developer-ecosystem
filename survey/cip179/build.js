@@ -5,7 +5,7 @@
 //   node cip179/build.js --owner <key hash> --end-epoch <epoch> --out <dir>
 //
 // Options:
-//   --survey <file>      SurveyJS survey (default: cip179/draft/survey.json)
+//   --survey <file>      SurveyJS survey (default: cip179/2026/survey.json)
 //   --owner <hex>        owner key hash (28 bytes), who can cancel the survey
 //   --end-epoch <n>      last epoch in which responses count
 //   --schema-uri <uri>   where free-text-schema.json is published
@@ -28,7 +28,7 @@ const DEFAULT_SCHEMA_URI =
 
 const { values: args } = parseArgs({
   options: {
-    survey: { type: "string", default: "cip179/draft/survey.json" },
+    survey: { type: "string", default: "cip179/2026/survey.json" },
     owner: { type: "string" },
     "end-epoch": { type: "string" },
     "schema-uri": { type: "string", default: DEFAULT_SCHEMA_URI },

@@ -4,7 +4,7 @@
 //   node cip179/site.js [--survey <dir>] [--out <dir>] [--offline | --unpublished]
 //
 // Options:
-//   --survey <dir>   the files written by `build.js --out` (default: cip179/draft)
+//   --survey <dir>   the files written by `build.js --out` (default: cip179/2026)
 //   --out <dir>      where the site is written (default: dist)
 //   --offline        don't read the published survey
 //   --unpublished    a survey not published yet, to try it locally
@@ -33,7 +33,7 @@ import { epochAt } from "./network.js";
 
 const { values: args } = parseArgs({
   options: {
-    survey: { type: "string", default: "cip179/draft" },
+    survey: { type: "string", default: "cip179/2026" },
     out: { type: "string", default: "dist" },
     offline: { type: "boolean", default: false },
     unpublished: { type: "boolean", default: false },

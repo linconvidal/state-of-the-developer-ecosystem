@@ -12,7 +12,7 @@ You need a GitHub account, and nothing else: you suggest changes from your brows
 
 **On the site**, to see the texts as respondents will: https://state-of-cardano-developer-survey-2026.pages.dev/. Pick your language in the menu at the top.
 
-The site only shows the questions that apply to your answers. **The file** has them all, in order: [`cip179/draft/survey.json`](cip179/draft/survey.json). Each text is in all nine languages, one per line, under its two-letter code: `default` is English, then `fr`, `es`, `pt`, `it`, `de`, `ja`, `vi` and `zh`.
+The site only shows the questions that apply to your answers. **The file** has them all, in order: [`cip179/2026/survey.json`](cip179/2026/survey.json). Each text is in all nine languages, one per line, under its two-letter code: `default` is English, then `fr`, `es`, `pt`, `it`, `de`, `ja`, `vi` and `zh`.
 
 ```json
 "title": {
@@ -38,7 +38,7 @@ Not everything needs changing: if a text is correct and natural, leave it, even 
 
 ## Suggest a change
 
-1. Open the file: [`cip179/draft/survey.json`](cip179/draft/survey.json) for the questions, or your language's file in [`site/texts/`](site/texts).
+1. Open the file: [`cip179/2026/survey.json`](cip179/2026/survey.json) for the questions, or your language's file in [`site/texts/`](site/texts).
 2. Click the pencil, "Edit this file". GitHub makes your own copy of the project: accept.
 3. Find the text with the editor's search (Ctrl+F, or ⌘F on a Mac).
 4. Change the text on your language's line. Make all your changes to the file before going on.

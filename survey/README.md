@@ -11,7 +11,7 @@ Run everything from `survey/`, after `yarn`. To review a translation, see [TRANS
 
 ## Try it locally
 
-**The questions**, rebuilt from `cip179/draft/survey.json` at each reload:
+**The questions**, rebuilt from `cip179/2026/survey.json` at each reload:
 
 ```
 yarn preview
@@ -41,13 +41,13 @@ That secret is Turnstile's test secret, which always passes (`2x0000000000000000
 
 ## Edit the survey
 
-1. Edit `cip179/draft/survey.json`, in SurveyJS's format.
+1. Edit `cip179/2026/survey.json`, in SurveyJS's format.
 2. `yarn cip179` lists what doesn't fit CIP-179 or the widget, such as labels over 64 bytes. It writes nothing.
 3. `yarn preview` to try it.
 4. Write the survey's files, once there are no errors:
 
    ```
-   yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/draft
+   yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/2026
    ```
 
    - `definition.metadata.json`: the definition, published on chain. It holds the English texts only.
@@ -72,10 +72,10 @@ You need:
 2. Write the survey's files, with your wallet's key hash as owner:
 
    ```
-   yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/draft
+   yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/2026
    ```
 
-3. Publish `cip179/draft/definition.metadata.json` with your wallet: import it in Tessera's Create page, and publish. With cardano-cli: `--metadata-json-file definition.metadata.json --json-metadata-detailed-schema --required-signer-hash <key hash>`.
+3. Publish `cip179/2026/definition.metadata.json` with your wallet: import it in Tessera's Create page, and publish. With cardano-cli: `--metadata-json-file definition.metadata.json --json-metadata-detailed-schema --required-signer-hash <key hash>`.
 4. In `wrangler.jsonc`, set `SPONSOR_SURVEY` to `<tx id>#0`.
 
 ### 2. Fund the sponsor
@@ -141,9 +141,9 @@ yarn site
 yarn wrangler pages deploy --branch main
 ```
 
-`yarn site` stops unless `cip179/draft/` is the survey published as `SPONSOR_SURVEY`. The site is at https://state-of-cardano-developer-survey-2026.pages.dev/.
+`yarn site` stops unless `cip179/2026/` is the survey published as `SPONSOR_SURVEY`. The site is at https://state-of-cardano-developer-survey-2026.pages.dev/.
 
-Commit `cip179/draft/` and `wrangler.jsonc`: the repository says what is deployed.
+Commit `cip179/2026/` and `wrangler.jsonc`: the repository says what is deployed.
 
 ### 5. Check
 
@@ -161,8 +161,8 @@ What to do depends on what changed:
 - **The survey, but not its definition**: the translations, display conditions and None labels, which are only in `widget.json`. Rebuild with the published survey's owner and end epoch (`yarn site` prints the end epoch), then check that the definition is unchanged:
 
   ```
-  yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/draft
-  git diff cip179/draft/definition.metadata.json
+  yarn cip179 --owner <key hash> --end-epoch <epoch> --out cip179/2026
+  git diff cip179/2026/definition.metadata.json
   ```
 
   No difference: step 4. A difference: the next case.
@@ -191,7 +191,7 @@ Before step 1, in `wrangler.jsonc`, set `SPONSOR_NETWORK` (`preprod` or `mainnet
 
 - `site/`: the page respondents use, built into `dist/` by `yarn site`, with the survey baked in.
 - `cip179/`: the survey builder (`build.js`), the preview (`preview.js`), the site's build (`site.js`), the sponsor (`sponsor*.js`) and the tests.
-- `cip179/draft/`: the 2026 survey.
+- `cip179/2026/`: the 2026 survey.
 - `functions/api/sponsor/`: the sponsor's endpoints.
 - `migrations/`: the sponsor's database.
 - `wrangler.jsonc`: the Pages project, its database and vars. `yarn site` takes the network, the survey and the Turnstile site key from there too, so the page and the sponsor agree. Secrets are Pages secrets, and locally in the gitignored `.dev.vars`.
