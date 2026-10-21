@@ -291,7 +291,7 @@
     "defaultLanguage": "en",
     "translations": {
       "de": {
-        "title": "Cardano-Entwicklerumfrage 2026",
+        "title": "Stand des Cardano-Entwickler-Ökosystems - Umfrage 2026",
         "description": "Etwa 15 Minuten. Die Ergebnisse zeigen Tool-Entwicklern, Dokumentationsautoren und Geldgebern, woran zuerst gearbeitet werden sollte.",
         "questions": [
           {
@@ -853,7 +853,7 @@
         ]
       },
       "es": {
-        "title": "Encuesta 2026 a desarrolladores de Cardano",
+        "title": "Estado del ecosistema de desarrolladores de Cardano - Encuesta 2026",
         "description": "Unos 15 minutos. Los resultados indican a quienes crean herramientas, escriben documentación o financian proyectos en qué trabajar primero.",
         "questions": [
           {
@@ -1415,7 +1415,7 @@
         ]
       },
       "fr": {
-        "title": "Enquête 2026 auprès des développeurs Cardano",
+        "title": "État de l'écosystème des développeurs Cardano - Enquête 2026",
         "description": "Environ 15 minutes. Les résultats montrent aux créateurs d'outils, aux auteurs de documentation et aux financeurs sur quoi travailler en priorité.",
         "questions": [
           {
@@ -1977,7 +1977,7 @@
         ]
       },
       "it": {
-        "title": "Sondaggio 2026 tra gli sviluppatori Cardano",
+        "title": "Stato dell'ecosistema degli sviluppatori Cardano - Sondaggio 2026",
         "description": "Circa 15 minuti. I risultati indicano a chi crea strumenti, scrive documentazione o finanzia progetti su cosa lavorare per primo.",
         "questions": [
           {
@@ -2539,7 +2539,7 @@
         ]
       },
       "ja": {
-        "title": "Cardano開発者アンケート 2026",
+        "title": "Cardano開発者エコシステムの現状 - 2026年アンケート",
         "description": "所要時間は約15分です。結果は、ツール開発者、ドキュメント執筆者、資金提供者が何に優先して取り組むべきかを示します。",
         "questions": [
           {
@@ -3101,7 +3101,7 @@
         ]
       },
       "pt": {
-        "title": "Pesquisa 2026 com Desenvolvedores Cardano",
+        "title": "Estado do Ecossistema de Desenvolvedores Cardano - Pesquisa 2026",
         "description": "Cerca de 15 minutos. Os resultados mostram a quem cria ferramentas, escreve documentação e financia projetos no que trabalhar primeiro.",
         "questions": [
           {
@@ -3663,7 +3663,7 @@
         ]
       },
       "vi": {
-        "title": "Khảo sát lập trình viên Cardano 2026",
+        "title": "Hiện trạng hệ sinh thái lập trình viên Cardano - Khảo sát 2026",
         "description": "Khoảng 15 phút. Kết quả cho những người xây dựng công cụ, viết tài liệu và cấp vốn biết nên ưu tiên làm gì trước.",
         "questions": [
           {
@@ -4225,7 +4225,7 @@
         ]
       },
       "zh": {
-        "title": "2026 年 Cardano 开发者调查",
+        "title": "Cardano 开发者生态现状 - 2026 年调查",
         "description": "大约需要 15 分钟。调查结果会告诉工具开发者、文档作者和资助方应该优先做什么。",
         "questions": [
           {

@@ -1,14 +1,14 @@
 {
   "title": {
-    "default": "Cardano Developer Survey 2026",
-    "fr": "Enquête 2026 auprès des développeurs Cardano",
-    "es": "Encuesta 2026 a desarrolladores de Cardano",
-    "pt": "Pesquisa 2026 com Desenvolvedores Cardano",
-    "it": "Sondaggio 2026 tra gli sviluppatori Cardano",
-    "de": "Cardano-Entwicklerumfrage 2026",
-    "ja": "Cardano開発者アンケート 2026",
-    "vi": "Khảo sát lập trình viên Cardano 2026",
-    "zh": "2026 年 Cardano 开发者调查"
+    "default": "State of the Cardano Developer Ecosystem - 2026 Survey",
+    "fr": "État de l'écosystème des développeurs Cardano - Enquête 2026",
+    "es": "Estado del ecosistema de desarrolladores de Cardano - Encuesta 2026",
+    "pt": "Estado do Ecossistema de Desenvolvedores Cardano - Pesquisa 2026",
+    "it": "Stato dell'ecosistema degli sviluppatori Cardano - Sondaggio 2026",
+    "de": "Stand des Cardano-Entwickler-Ökosystems - Umfrage 2026",
+    "ja": "Cardano開発者エコシステムの現状 - 2026年アンケート",
+    "vi": "Hiện trạng hệ sinh thái lập trình viên Cardano - Khảo sát 2026",
+    "zh": "Cardano 开发者生态现状 - 2026 年调查"
   },
   "description": {
     "default": "About 15 minutes. The results tell tool builders, documentation writers and funders what to work on first.",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
-  "name": "State of the Cardano developer ecosystem 2026",
+  "name": "State of the Cardano Developer Ecosystem - 2026 Survey",
   "short_name": "Cardano dev survey 2026",
   "description": "The annual survey to assess the state of the Cardano developer ecosystem.",
   "lang": "en",
