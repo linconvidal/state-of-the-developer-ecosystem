@@ -59,16 +59,42 @@ That secret is Turnstile's test secret, which always passes (`2x0000000000000000
 
 ## Deploy
 
-Steps for the Preview testnet. For [another network](#other-networks), change the network first.
+The survey runs on one network at a time: Preview to develop it, Preprod for the final test, then Mainnet. The steps are the same, with each network's values:
+
+| | Preview | Preprod | Mainnet |
+| --- | --- | --- | --- |
+| `SPONSOR_NETWORK` | `preview` | `preprod` | `mainnet` |
+| `SPONSOR_KOIOS` | `https://preview.koios.rest/api/v1` | `https://preprod.koios.rest/api/v1` | `https://api.koios.rest/api/v1` |
+| The sponsor's database | `cip179-sponsor-preview` | `cip179-sponsor-preprod` | `cip179-sponsor-mainnet` |
+| An epoch lasts | 1 day | 5 days | 5 days |
+| Ada | from the [faucet](https://docs.cardano.org/cardano-testnets/tools/faucet) | from the faucet | real ada |
+
+Start by setting `SPONSOR_NETWORK` and `SPONSOR_KOIOS` in `wrangler.jsonc`. On Mainnet, go through [Before Mainnet](#before-mainnet) first.
 
 You need:
 
-- a Cardano wallet on the network: it publishes the survey, and can cancel it;
+- a Cardano wallet on the network, the survey's owner: it publishes the survey, and can cancel it;
 - a Cloudflare account.
+
+### Before Mainnet
+
+- **Merge into `main`.** The definition names the free-text schema by its address on GitHub Pages, which serves `main`, and by its hash. Before publishing, check that the address serves the same file:
+
+  ```
+  curl -sf https://cardano-foundation.github.io/state-of-the-developer-ecosystem/survey/cip179/free-text.schema.json | diff - cip179/free-text.schema.json && echo same
+  ```
+
+- **The owner's wallet**: the one that publishes the survey, and alone can cancel it.
+- **The sponsor's own wallet**, apart from the owner's and from the testnets' one: move `.dev.vars` away before [step 2](#2-fund-the-sponsor), and give the new seed phrase in [Cloudflare's step 5](#3-set-up-cloudflare). Its ada is real: keep a copy of the seed phrase somewhere safe.
+- **Its budget**: the expected responses times about 0.2 ada, plus a margin. During the survey, ada sent to its address becomes a new coin within 30 minutes.
+- **Its coins**: one per respondent publishing at the same time, each worth at least 1.5 ada. An announcement brings many respondents at once: split into more coins than on the testnets.
+- **The daily cap**, `SPONSOR_DAILY_CAP` (see [Later](#later)): it bounds the spending if something goes wrong.
+- **A [custom domain](#custom-domain)**, for the site's address.
+- **Who watches** the sponsor's logs ([step 5](#5-check)) and its balance, during the survey.
 
 ### 1. Publish the survey
 
-1. Pick the end epoch: the current epoch, from `curl -s https://preview.koios.rest/api/v1/tip` (`epoch_no`), plus the number of days to stay open. A Preview epoch lasts one day. Responses count until the end of the end epoch.
+1. Pick the end epoch: the current epoch, from `curl -s <SPONSOR_KOIOS>/tip` (`epoch_no`), plus the number of epochs to stay open. Responses count until the end of the end epoch.
 2. Write the survey's files, with your wallet's key hash as owner:
 
    ```
@@ -83,11 +109,11 @@ You need:
 1. Make its wallet:
 
    ```
-   node cip179/sponsor-key.js
+   node cip179/sponsor-key.js --network <network>
    ```
 
-   It writes the seed phrase to `.dev.vars` and prints the address. If `.dev.vars` already has one, it stops: that wallet is the sponsor.
-2. Send test ada to the address, from the [faucet](https://docs.cardano.org/cardano-testnets/tools/faucet). A response costs at most 0.5 ada.
+   It writes the seed phrase to `.dev.vars` and prints the address. If `.dev.vars` already has one, it stops: that wallet is the sponsor. Preview and Preprod share addresses, so one wallet serves both.
+2. Send ada to the address. A response costs about 0.2 ada, and at most 0.5 ada.
 3. Split the wallet into coins, one per respondent publishing at the same time:
 
    ```
@@ -96,7 +122,7 @@ You need:
 
 ### 3. Set up Cloudflare
 
-Once. For another network, only steps 3 and 5.
+Once per account. For another network, step 3, and step 5 if the sponsor's wallet changes.
 
 1. Log in:
 
@@ -110,19 +136,19 @@ Once. For another network, only steps 3 and 5.
    yarn wrangler pages project create state-of-cardano-developer-survey-2026 --production-branch main
    ```
 
-3. Create the sponsor's database:
+3. Create the sponsor's database, named for the network:
 
    ```
-   yarn wrangler d1 create cip179-sponsor-preview
+   yarn wrangler d1 create cip179-sponsor-<network> --no-update-config
    ```
 
-   When it offers to add the database to your config, answer no. Put its `database_id` in the `db` entry of `wrangler.jsonc`, then:
+   Put its name and `database_id` in the `db` entry of `wrangler.jsonc`, then:
 
    ```
    yarn db:migrate --remote
    ```
 
-4. Create a Turnstile widget, in the Cloudflare dashboard (Turnstile, Add widget), for the hostname `state-of-cardano-developer-survey-2026.pages.dev`. Put its site key as `TURNSTILE_SITE_KEY` in `wrangler.jsonc`, and give its secret key:
+4. Create a Turnstile widget, in the Cloudflare dashboard (Turnstile, Add widget), for the project's hostname, `<name>.pages.dev` (step 2 prints it), and later the [custom domain](#custom-domain). Put its site key as `TURNSTILE_SITE_KEY` in `wrangler.jsonc`, and give its secret key:
 
    ```
    yarn wrangler pages secret put TURNSTILE_SECRET
@@ -141,7 +167,7 @@ yarn site
 yarn wrangler pages deploy --branch main
 ```
 
-`yarn site` stops unless `cip179/2026/` is the survey published as `SPONSOR_SURVEY`. The site is at https://state-of-cardano-developer-survey-2026.pages.dev/.
+`yarn site` stops unless `cip179/2026/` is the survey published as `SPONSOR_SURVEY`. The site is at the project's address, `https://<name>.pages.dev/`, and at its custom domain once set up.
 
 Commit `cip179/2026/` and `wrangler.jsonc`: the repository says what is deployed.
 
@@ -152,6 +178,16 @@ Answer the survey on the site and publish: the last screen links to the transact
 ```
 yarn wrangler pages deployment tail --project-name state-of-cardano-developer-survey-2026
 ```
+
+### Custom domain
+
+Once, on the account that runs Mainnet. For a domain whose DNS isn't on Cloudflare, such as `cardano.org`:
+
+1. In the Cloudflare dashboard (Workers & Pages, the project, Custom domains), set up a domain with the hostname, such as `state-of-the-developer-ecosystem.cardano.org`.
+2. At the DNS provider, add a CNAME record from that hostname to the project's `<name>.pages.dev`. Only after step 1: before it, the domain answers with error 522.
+3. Add the hostname to the Turnstile widget (Turnstile, the widget, Hostname management).
+
+Cloudflare then issues the certificate, and the dashboard shows the domain as active. A domain with CAA records must allow Cloudflare's certificate authorities.
 
 ### Update the deployed site
 
@@ -180,10 +216,6 @@ A display condition changed while the survey is open also changes the export: it
 - **`migrations/` changed**: `yarn db:migrate --remote`.
 - **Cap the spending**: set `SPONSOR_DAILY_CAP`, in lovelace per 24 hours, in the `vars` of `wrangler.jsonc`, then redeploy.
 - **Close early**: cancel the survey with the owner's wallet, in Tessera. The sponsor stops within 10 minutes.
-
-### Other networks
-
-Before step 1, in `wrangler.jsonc`, set `SPONSOR_NETWORK` (`preprod` or `mainnet`) and `SPONSOR_KOIOS` (`https://preprod.koios.rest/api/v1` or `https://api.koios.rest/api/v1`). In the steps, use that network's Koios and database name (`cip179-sponsor-preprod`). On Mainnet, give the sponsor its own wallet: move `.dev.vars` away before step 2, and pass `--network mainnet`.
 
 ## How it works
 

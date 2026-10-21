@@ -47,7 +47,7 @@ Not everything needs changing: if a text is correct and natural, leave it, even 
 
 When editing, change only the words between the quotes:
 
-- Leave the `default` line alone. The English texts are published on the Cardano blockchain: changing them means a new survey. Suggestions for the English go to [Proof-reading](../CONTRIBUTING.md#proof-reading).
+- Leave the `default` line alone. The English texts are published on the Cardano blockchain: changing them means a new survey. The other languages aren't: they can be fixed at any time, even while the survey is open. Suggestions for the English go to [Proof-reading](../CONTRIBUTING.md#proof-reading).
 - Don't use `"` inside a text. Use your language's quotation marks: « », „ “, “ ”, 「 」…
 - Keep the quotes and the comma at the end of the line.
 - Keep what is in braces as is: `{n}`, `{total}`, `${date}`… They become a number or a date.
