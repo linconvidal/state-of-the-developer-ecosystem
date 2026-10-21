@@ -12,8 +12,8 @@
   "d1_databases": [
     {
       "binding": "db",
-      "database_name": "cip179-sponsor-preview",
-      "database_id": "3f5042f0-98ec-4eb2-9072-8421eda29a0c",
+      "database_name": "cip179-sponsor-preprod",
+      "database_id": "4d9021bb-b8ce-4a37-8cad-21e562416c0f",
       "migrations_dir": "migrations"
     }
   ],
@@ -22,8 +22,8 @@
        secret; locally, the test secret in .dev.vars. */
     "TURNSTILE_SITE_KEY": "0x4AAAAAAFYzWeyCVNJMl0nI",
     /* The sponsor (cip179/sponsor.js); its SPONSOR_MNEMONIC is a secret. */
-    "SPONSOR_NETWORK": "preview",
-    "SPONSOR_KOIOS": "https://preview.koios.rest/api/v1",
-    "SPONSOR_SURVEY": "117dd6f740e26be1db5b3c7bcc94e2da4bf54bc23c9c24d88f4a73c48f4f1944#0"
+    "SPONSOR_NETWORK": "preprod",
+    "SPONSOR_KOIOS": "https://preprod.koios.rest/api/v1",
+    "SPONSOR_SURVEY": "0d1ca0e63fd9d5f10668aae2225575ce88099056038c49a2b1cf32f9de350e1c#0"
   }
 }
